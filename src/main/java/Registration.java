@@ -54,4 +54,9 @@ public class Registration {
             element.click();
         }
     }
+
+    public boolean isVisibleRegisterButton(){
+        WebElement element = driver.findElement(registerButton);
+        return(element.isDisplayed());
+    }
 }

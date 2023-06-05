@@ -4,17 +4,23 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.util.List;
+
 public class LKPage {
     public LKPage(WebDriver driver) {
         this.driver = driver;
     }
 
     private WebDriver driver;
-    By exitButton = By.xpath(".//button[@class='Account_button__14Yp3 text text_type_main-medium text_color_inactive']");
+    public By exitButton = By.xpath(".//button[text()='Выход']");
 
-    public void waitForLoadData() {
-        WebElement element = driver.findElement(exitButton);
-        new WebDriverWait(driver, 20).until(ExpectedConditions.visibilityOf(element));
+    public By notes = By.xpath(".//p[text()='В этом разделе вы можете изменить свои персональные данные']");
+      public boolean waitForLoadData() {
+        WebElement element = driver.findElement(notes);
+          new WebDriverWait(driver, 10).until(driver -> (element.getText() != null
+                  && !element.getText().isEmpty()
+          ));
+        return element.isDisplayed();
     }
 
     public  void clickExitButton(){

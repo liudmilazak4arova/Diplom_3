@@ -3,24 +3,25 @@ import org.junit.Test;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class LoginMainPageTest extends BaseTest {
+    public LoginMainPageTest(String browser) {
+        super(browser);
+    }
+
     @Test
     public void checkLoginMainPage() {
         MainPage mainPage = new MainPage(driver);
         driver.get(GlobalData.URL);
-        mainPage.waitForLoadData();
+        mainPage.waitForLoadDataEnterButton();
         mainPage.clickEnterButton();
-        new WebDriverWait(driver, 10);
-        System.out.println(driver.getCurrentUrl());
-        Assert.assertEquals(GlobalData.URL_LOGIN, driver.getCurrentUrl());
+        Assert.assertEquals(true, mainPage.waitForAddOrderLink());
     }
     @Test
     public void checkLoginLK() {
         MainPage mainPage = new MainPage(driver);
          driver.get(GlobalData.URL);
-        mainPage.waitForLoadData();
+        mainPage.waitForLoadDataEnterButton();
         mainPage.clickLkLink();
         new WebDriverWait(driver, 10);
-        System.out.println(driver.getCurrentUrl());
         Assert.assertEquals(GlobalData.URL_LOGIN, driver.getCurrentUrl());
     }
 }

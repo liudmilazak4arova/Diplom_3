@@ -3,14 +3,17 @@ import org.junit.Test;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class LoginRegistrationPageTest extends BaseTest {
+    public LoginRegistrationPageTest(String browser) {
+        super(browser);
+    }
+
     @Test
     public void checkLogin() {
         Registration registration = new Registration(driver);
         driver.get(GlobalData.URL_REGISTER);
         registration.waitForLoadData();
         registration.clickEnterLink();
-        new WebDriverWait(driver, 10);
-        System.out.println(driver.getCurrentUrl());
-        Assert.assertEquals(GlobalData.URL_LOGIN, driver.getCurrentUrl());
+        MainPage mainPage = new MainPage(driver);
+        Assert.assertEquals(true, mainPage.waitForAddOrderLink());
     }
 }

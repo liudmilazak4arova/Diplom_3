@@ -18,9 +18,10 @@ public class LoginPage {
     //Ввод пароля
     By passwordInput =  By.xpath(".//div[@class='input pr-6 pl-6 input_type_password input_size_default']/input");
 
-    public void waitForLoadData() {
+    public boolean waitForLoadData() {
         WebElement element = driver.findElement(loginButton);
         new WebDriverWait(driver, 10).until(ExpectedConditions.visibilityOf(element));
+        return element.isDisplayed();
     }
 
     public  void clickLoginButton(){
