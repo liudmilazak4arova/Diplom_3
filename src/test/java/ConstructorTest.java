@@ -6,12 +6,27 @@ public class ConstructorTest extends BaseTest {
         super(browser);
     }
 
-
     @Test
-    public void checkIngridientsAvailable() {
+    public void checkBunsAvailable() {
         MainPage mainPage = new MainPage(driver);
         driver.get(GlobalData.URL);
+        mainPage.ingridientClick(0);
+        Assert.assertTrue(mainPage.isVisiblePanel("Булки"));
+    }
 
-        Assert.assertEquals(true, mainPage.checkInridients());
+    @Test
+    public void checkSausesAvailable() {
+        MainPage mainPage = new MainPage(driver);
+        driver.get(GlobalData.URL);
+        mainPage.ingridientClick(1);
+        Assert.assertTrue(mainPage.isVisiblePanel("Соусы"));
+    }
+
+    @Test
+    public void checkFillingAvailable() {
+        MainPage mainPage = new MainPage(driver);
+        driver.get(GlobalData.URL);
+        mainPage.ingridientClick(2);
+        Assert.assertTrue(mainPage.isVisiblePanel("Начинки"));
     }
 }

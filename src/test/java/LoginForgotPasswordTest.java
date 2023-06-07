@@ -1,6 +1,6 @@
 import org.junit.Assert;
 import org.junit.Test;
-import org.openqa.selenium.support.ui.WebDriverWait;
+
 
 public class LoginForgotPasswordTest extends  BaseTest{
     public LoginForgotPasswordTest(String browser) {

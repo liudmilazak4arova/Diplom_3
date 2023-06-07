@@ -13,7 +13,7 @@ public class LoginMainPageTest extends BaseTest {
         driver.get(GlobalData.URL);
         mainPage.waitForLoadDataEnterButton();
         mainPage.clickEnterButton();
-        Assert.assertEquals(true, mainPage.waitForAddOrderLink());
+        Assert.assertTrue( mainPage.waitForAddOrderLink());
     }
     @Test
     public void checkLoginLK() {

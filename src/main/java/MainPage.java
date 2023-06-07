@@ -1,8 +1,8 @@
-import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -20,13 +20,11 @@ public class MainPage {
     //Кнопка войти в аккаунт
     public By enterButton = By.xpath(".//button[@class='button_button__33qZ0 button_button_type_primary__1O7Bx button_button_size_large__G21Vg']");
 
-    //Кнопка Оформить заказ
-    public By addOrderButton = By.xpath(".//button[text()='Оформить заказ']");
-    //Кнопка Зарегистрироваться
+   //Кнопка Зарегистрироваться
     public By registerLink = By.linkText("Зарегистрироваться");
     //Кнопка "Личный кабинет"
     public By lkLink = By.linkText("Личный Кабинет");
-    public By ingrientsLink = By.xpath(".//span[@class='text text_type_main-default']");
+    public By ingrientsLink = By.xpath(".//div[@style='display: flex;']/div");
 
     public void waitForLoadDataEnterButton() {
         WebElement element = driver.findElement(enterButton);
@@ -64,13 +62,22 @@ public class MainPage {
             element.click();
         }
     }
-    public boolean checkInridients(){
-        boolean isIngridientsEnable = true;
+
+    public boolean ingridientClick(int i){
         List<WebElement> ingridientsElem= driver.findElements(ingrientsLink);
-        for (WebElement i:ingridientsElem){
-            ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView();", i);
-            if (!i.isEnabled()) {isIngridientsEnable = false;}
+        WebElement ingridient =ingridientsElem.get(i);
+            ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView();", ingridient);
+            if (ingridient.getAttribute("class").equals("tab_tab__1SPyG  pt-4 pr-10 pb-4 pl-10 noselect")) {
+                ingridient.click();
         }
-        return  isIngridientsEnable;
+        return  ingridient.isEnabled();
+    }
+
+    public  boolean isVisiblePanel(String textPanel){
+        String searchStr = ".//h2[text()='" + textPanel + "']";
+        System.out.println(searchStr);
+        By h2 = By.xpath(searchStr);
+        WebElement element = driver.findElement(h2);
+        return  element.isDisplayed();
     }
 }

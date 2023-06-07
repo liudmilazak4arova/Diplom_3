@@ -1,7 +1,6 @@
 import io.restassured.RestAssured;
 import org.junit.After;
 import org.junit.Before;
-import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.openqa.selenium.WebDriver;
@@ -62,14 +61,14 @@ public class BaseTest {
 
     @Before
     public void setUP() {
-        if (browser == "Chrome") {
+        if (browser.equals("Chrome")) {
             ChromeOptions chromeOptions = new ChromeOptions();
             chromeOptions.addArguments("--no-sandbox", "--headless", "--disable-dev-shm-usage");
             driver = new ChromeDriver(chromeOptions);
         }
-        if (browser == "Yandex"){
+        if (browser.equals("Yandex")){
             ChromeOptions chromeOptions = new ChromeOptions();
-            //  chromeOptions.addArguments("--no-sandbox", "--headless", "--disable-dev-shm-usage");
+            chromeOptions.addArguments("--no-sandbox", "--headless", "--disable-dev-shm-usage");
 
             System.setProperty("webdriver.chrome.driver","src/test/resources/yandexdriver.exe");
             ChromeOptions options=new ChromeOptions();
@@ -77,20 +76,10 @@ public class BaseTest {
         }
     }
 
-    public void enterRegisteredUser(){
-        //Создаем пользователя вручную
-        createUserHandle(UserData.name, UserData.email, UserData.password);
-        //Входит под этим пользователем
-        LoginPage  loginPage = new LoginPage(driver);
-        driver.get(GlobalData.URL_LOGIN);
-        loginPage.fill1Form(UserData.email, UserData.password);
-        loginPage.clickLoginButton();
-    }
-
     @After
     public void teardown() {
         loginAndDeleteHandle(UserData.email, UserData.password);
-         driver.quit();
+        driver.quit();
     }
 
 }
