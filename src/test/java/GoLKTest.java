@@ -20,7 +20,7 @@ public class GoLKTest extends BaseTest{
         mainPage.clickLkLink();
         LKPage lkPage = new LKPage(driver);
         boolean isLK = lkPage.waitForLoadData();
-        Assert.assertEquals(true,isLK);
+        Assert.assertTrue(isLK);
 
     }
     @Test
@@ -36,7 +36,7 @@ public class GoLKTest extends BaseTest{
         mainPage.clickLkLink();
         LKPage lkPage = new LKPage(driver);
         lkPage.clickExitButton();
-        Assert.assertEquals(true, loginPage.waitForLoadData());
+        Assert.asserTrue(loginPage.waitForLoadData());
 
     }
 }
