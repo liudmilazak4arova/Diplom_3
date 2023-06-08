@@ -13,6 +13,6 @@ public class LoginRegistrationPageTest extends BaseTest {
         registration.waitForLoadData();
         registration.clickEnterLink();
         MainPage mainPage = new MainPage(driver);
-        Assert.assertEquals(true, mainPage.waitForAddOrderLink());
+        Assert.assertTrue( mainPage.waitForAddOrderLink());
     }
 }

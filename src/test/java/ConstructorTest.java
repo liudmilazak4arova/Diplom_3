@@ -11,7 +11,7 @@ public class ConstructorTest extends BaseTest {
         MainPage mainPage = new MainPage(driver);
         driver.get(GlobalData.URL);
         mainPage.ingridientClick(0);
-        Assert.assertTrue(mainPage.isVisiblePanel("Булки"));
+        Assert.assertTrue(mainPage.isActiveMenu(0, 1, 2));
     }
 
     @Test
@@ -19,7 +19,7 @@ public class ConstructorTest extends BaseTest {
         MainPage mainPage = new MainPage(driver);
         driver.get(GlobalData.URL);
         mainPage.ingridientClick(1);
-        Assert.assertTrue(mainPage.isVisiblePanel("Соусы"));
+        Assert.assertTrue(mainPage.isActiveMenu(1, 0, 2));
     }
 
     @Test
@@ -27,6 +27,6 @@ public class ConstructorTest extends BaseTest {
         MainPage mainPage = new MainPage(driver);
         driver.get(GlobalData.URL);
         mainPage.ingridientClick(2);
-        Assert.assertTrue(mainPage.isVisiblePanel("Начинки"));
+        Assert.assertTrue(mainPage.isActiveMenu(2, 1, 0));
     }
 }

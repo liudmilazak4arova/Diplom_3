@@ -14,6 +14,6 @@ public class LoginForgotPasswordTest extends  BaseTest{
         forgotPasswordPage.waitForLoadData();
         forgotPasswordPage.clickEnterLink();
         MainPage mainPage = new MainPage(driver);
-        Assert.assertEquals(true, mainPage.waitForAddOrderLink());
+        Assert.assertTrue( mainPage.waitForAddOrderLink());
     }
 }

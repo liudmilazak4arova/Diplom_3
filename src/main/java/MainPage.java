@@ -73,11 +73,15 @@ public class MainPage {
         return  ingridient.isEnabled();
     }
 
-    public  boolean isVisiblePanel(String textPanel){
-        String searchStr = ".//h2[text()='" + textPanel + "']";
-        System.out.println(searchStr);
-        By h2 = By.xpath(searchStr);
-        WebElement element = driver.findElement(h2);
-        return  element.isDisplayed();
+    public boolean isActiveMenu(int numberActive, int numberInactive1,int numberInactive2){
+        List<WebElement> ingridientsElem= driver.findElements(ingrientsLink);
+        WebElement ingridientActive =ingridientsElem.get(numberActive);
+        WebElement ingridientInactive1 =ingridientsElem.get(numberInactive1);
+        WebElement ingridientInactive2 =ingridientsElem.get(numberInactive1);
+        return (ingridientActive.getAttribute("class").equals("tab_tab__1SPyG tab_tab_type_current__2BEPc pt-4 pr-10 pb-4 pl-10 noselect")) &&
+                (ingridientInactive1.getAttribute("class").equals("tab_tab__1SPyG  pt-4 pr-10 pb-4 pl-10 noselect")) &&
+                (ingridientInactive2.getAttribute("class").equals("tab_tab__1SPyG  pt-4 pr-10 pb-4 pl-10 noselect"));
+
+
     }
 }
